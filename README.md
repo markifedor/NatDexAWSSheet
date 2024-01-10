@@ -10,6 +10,8 @@ It works by sending a request to AWS which requests which operation should be ru
 
 The example spreadsheet anyone can view is at: https://docs.google.com/spreadsheets/d/1F3vkkhJPt0S1EO6gcjIQLqLa501E3XohItdWX3eAlxs/
 
+Currently these commands can be run by anyone without setting up anything, or downloading the repo.
+
 ## Examples
 
 ### Running functions
