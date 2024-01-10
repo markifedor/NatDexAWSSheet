@@ -2,7 +2,7 @@
 
 ## Overview
 
-Through the use of AWS Lambda and Google Cloud this project allows for a Google Spreadsheet to be used as a database. 
+Through the use of AWS Lambda and Google Cloud, this project allows for a Google Spreadsheet to be used as a database. 
 
 The current use of this code is to modify a spreadsheet filled with all the Pokemon up to a certain point. You can set any of the Pokemon in the database to be obtained or not, as well as get a "Pokemon" object which contains the name and other useful data about it.
 
@@ -10,7 +10,7 @@ It works by sending a request to AWS which requests which operation should be ru
 
 The example spreadsheet anyone can view is at: https://docs.google.com/spreadsheets/d/1F3vkkhJPt0S1EO6gcjIQLqLa501E3XohItdWX3eAlxs/
 
-Currently these commands can be run by anyone without setting up anything, or downloading the repo.
+Currently these commands can be run by anyone without setting up anything or downloading the repo.
 
 ## Examples
 
