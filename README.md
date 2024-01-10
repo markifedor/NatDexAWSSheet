@@ -6,7 +6,7 @@ Through the use of AWS Lambda and Google Cloud this project allows for a Google 
 
 The current use of this code is to modify a spreadsheet filled with all the Pokemon up to a certain point. You can set any of the Pokemon in the database to be obtained or not, as well as get a "Pokemon" object which contains the name and other useful data about it.
 
-It works by sending a request to AWS which requests which operation should be run. That function is run using the google-spreadsheets wrapper of the official Google Sheets API. Currently the request is entered through command line or changing the aws website in the  url, but in future version the requests would be through a front end website.
+It works by sending a request to AWS which requests which operation should be run. That function is run using the google-spreadsheets wrapper of the official Google Sheets API. Currently the request is entered through command line, but in future version the requests would be through a front end website.
 
 The example spreadsheet anyone can view is at: https://docs.google.com/spreadsheets/d/1F3vkkhJPt0S1EO6gcjIQLqLa501E3XohItdWX3eAlxs/
 
