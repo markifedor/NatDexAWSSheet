@@ -93,6 +93,14 @@ functions:
           path: /setCaught
           method: POST
     maximumEventAge: 60
+
+  setUncaught:
+    handler: handler.setCaught
+    events:
+      - http:
+          path: /setUncaught
+          method: POST
+    maximumEventAge: 60
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details

@@ -16,7 +16,8 @@ const completion = '';
 
 const SPREADSHEET_ID = completion_copy; //https://docs.google.com/spreadsheets/d/***1CPAcrPbc7_1_ALa2UpmB8dDfUec-J8eSoA29J-6Jk1g***/edit#gid=0 the triple starred part of the url
 var __dexNumDict;
-const POKEMON_COLUMN = "D";
+
+const POKEMON_COLUMN = "D"; // completion and completion_copy: "D", test_sheet: "C"
 const STARTING_ROW = 9;
 
 module.exports.hello = async (event) => {
@@ -127,7 +128,8 @@ module.exports.getPokemonObject = async event => {
   
   let objs = {};
   for(let i = 0; i < names.length; i++){
-    const name = names[i];
+    let name = names[i];
+    name = name.trim();
     let cell = await searchByName(name);
     if(cell == "Pokemon not found"){
       return formatResponse(404, "Pokemon not found");
@@ -168,32 +170,38 @@ module.exports.getPokemonObject = async event => {
 
 module.exports.setCaught = async event => {
   console.log('Starting set caught function');
-  if(!event || !event.queryStringParameters || !event.queryStringParameters.names) {
+  if(!event || !event.queryStringParameters || !event.queryStringParameters.names || !event.path) {
     return formatResponse(400, { message: 'Invalid parameters' });
   }
+
+  let isCaught = (event.path == "/setCaught");
+  console.log(isCaught);
 
   const names = event.queryStringParameters.names.split(',');
   let cells = [];
   let contents = [];
   for(let i = 0; i < names.length; i++){
-    const name = names[i];
+    let name = names[i];
+    name = name.trim();
     const cell = await searchByName(name);
     if(cell == "Pokemon not found"){
       return formatResponse(404, {message: "Pokemon not found"});
     }
 
     cells[i] = String.fromCharCode(POKEMON_COLUMN.charCodeAt() + 1) + cell.substring(1);
-    contents[i] = true;
+    contents[i] = isCaught;
   }
   
   // console.log(cells);
   // console.log(contents);
-  console.log(await utilWrite(cells, contents));
+  return (await utilWrite(cells, contents));
   // console.log(await utilRead(cells));
 };
 
 async function searchByName(name){
-  console.log('Starting search function');
+  name = name.trim().toLowerCase();
+
+  console.log('Starting search function on ' + name[0].toUpperCase() + name.slice(1));
   let sheet;
   if(__dexNumDict == null){
     const doc = authenticateDoc();
@@ -275,7 +283,8 @@ function getHashAllPokemon(sheet){
         const cell = sheet.getCellByA1(range);
         
         // console.log(cell);
-        __dexNumDict[cell.value] = range;
+        const name = cell.value.trim().toLowerCase();
+        __dexNumDict[name] = range;
       }
 
       fs.writeFile(filePath, JSON.stringify(__dexNumDict), function (err) {

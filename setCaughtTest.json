@@ -1,0 +1,7 @@
+{
+    "queryStringParameters": {
+        "names": "Bulbasaur"
+    },
+    
+    "path" : "/setCaught"
+}
